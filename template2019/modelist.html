@@ -1,0 +1,26 @@
+<!--贡献榜列表-->
+{{each}}
+<ul class="cstyle">
+    <li>
+        {{if $index<3}}
+        TOP{{$index+1}}
+        {{else}}
+        {{$index+1}}
+        {{/if}}
+    </li>
+    <li>
+        <img src="{{$value.headimg | heatimgformat}}" class="anchorimg" alt="">
+        <div class="nobelimg nobelimg-{{$value.noble_id}}"></div>
+    </li>
+    <li>
+        <div class="nickname">{{$value.nickname}}</div>
+        <span class="xunimg xunimg-{{$value.noble_id}}"></span>
+    </li>
+    <li>
+        <div class="value">
+            <em>魔髮長度</em>
+            {{$value.score}}
+        </div>
+    </li>
+</ul>
+{{/each}}

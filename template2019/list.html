@@ -1,0 +1,69 @@
+<!--公主駕到列表-->
+{{each}}
+<ul class="style" pfid="{{$value.pfid}}"
+    {{if $index>19}}
+    style="display:none"
+    {{/if}}
+    >
+    <li>
+        {{if $index<3}}
+        TOP{{$index+1}}
+        {{else}}
+        {{$index+1}}
+        {{/if}}
+    </li>
+    <li>
+        <div class="faceinfo">
+            {{if $value.rank ==1}}
+            <div class="top1"></div>
+            {{else if $value.rank ==2}}
+            <div class="top2"></div>
+            {{else if $value.rank ==3}}
+            <div class="top3"></div>
+            {{/if}}
+
+            <img
+                    {{if $index<5}}
+            src="{{$value.headimg}}" alt="" class="anchorimg goto"
+            {{else}}
+            src="static/images/false.png" data-original="{{$value.headimg | heatimgformat}}" alt="" class="anchorimg
+            lazy goto"
+            {{/if}}
+
+
+            {{if $value.live_id!=null}}
+            data-direction="{{$value.stream_direction}}" data-stream="{{$value.stream_type}}"
+            data-livekey="{{$value.live_key}}" data-liveurl="{{$value.live_url}}" data-pfid="{{$value.pfid}}"
+            data-liveid="{{$value.live_id}}" data-cdnid="{{$value.cdn_id}}" data-liveimg="{{$value.live_img}}"
+            {{else}}
+            data-pfid="{{$value.pfid}}"
+            {{/if}}
+            >
+            {{if $value.headimg!=null}}
+            <img style="display: none !important;" class="userimg goto" src="{{$value.headimg}}" alt=""
+                 data-pfid="{{$value.pfid}}"
+            >
+            {{/if}}
+
+            {{if $value.live_id!=null}}
+            <div class="live"></div>
+            {{/if}}
+
+        </div>
+    </li>
+    <li>
+        <div class="nickname">{{$value.nickname}}</div>
+        <div class="value">魔髮長度<em>{{$value.score}}</em></div>
+    </li>
+    <li>
+        <button class="btn-contribution"
+                type="2"
+                anchor_id="{{$value.pfid}}">
+            <span class="btn-title">貢獻榜</span>
+            <span class="top-user-groups">
+                    {{include 'top3Template' $value.top3}}
+                </span>
+        </button>
+    </li>
+</ul>
+{{/each}}

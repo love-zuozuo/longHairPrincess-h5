@@ -1,0 +1,31 @@
+<!--贡献榜底部信息-->
+{{each}}
+<ul class="cstyle" pfid="{{$value.pfid}}"
+    {{if $value.rank>0}}
+    rank="{{$value.rank}}"
+    {{else}}
+    rank="0"
+    {{/if}}>
+    <li>
+        {{if $value.rank>0}}
+        TOP{{$value.rank}}
+        {{else}}
+        未上榜
+        {{/if}}
+    </li>
+    <li>
+        <img src="{{$value.headimg | heatimgformat}}" class="anchorimg" alt="">
+        <div class="nobelimg nobelimg-{{$value.noble_id}}"></div>
+    </li>
+    <li>
+        <div class="nickname">{{$value.nickname}}</div>
+        <span class="xunimg xunimg-{{$value.noble_id}}"></span>
+    </li>
+    <li>
+        <div class="starnum">
+            <em>魔髮長度</em>
+            {{$value.score}}
+        </div>
+    </li>
+</ul>
+{{/each}}

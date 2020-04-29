@@ -1,0 +1,68 @@
+<!--公主駕到底部信息栏模板-->
+{{each}}
+<ul class="style" pfid="{{$value.pfid}}"
+    {{if $value.rank>0}}
+    rank="{{$value.rank}}"
+    {{else}}
+    rank="0"
+    {{/if}}
+    >
+    <li>
+        {{if $value.rank>0}}
+        TOP{{$value.rank}}
+        {{if $value.group_id==1}}
+        <span class="groupdf">巔峰組</span>
+        {{else}}
+        <span class="groupdh">當紅組</span>
+        {{/if}}
+        {{else}}
+        未上榜
+        {{/if}}
+    </li>
+    <li>
+        <div class="faceinfo">
+            {{if $value.live_id!=null}}
+            <div class="top"></div>
+            {{/if}}
+
+            <img src="{{$value.headimg}}" data-original="{{$value.headimg | heatimgformat}}" alt=""
+                 class="anchorimg lazy"
+
+                 {{if $value.live_id!=null}}
+                 data-direction="{{$value.stream_direction}}" data-stream="{{$value.stream_type}}"
+                 data-livekey="{{$value.live_key}}" data-liveurl="{{$value.live_url}}" data-pfid="{{$value.pfid}}"
+                 data-liveid="{{$value.live_id}}" data-cdnid="{{$value.cdn_id}}" data-liveimg="{{$value.live_img}}"
+                 {{else}}
+                 data-pfid="{{$value.pfid}}"
+                 {{/if}}
+            >
+
+            {{if $value.headimg!=null}}
+            <img style="display: none !important;" class="userimg goto" src="{{$value.headimg}}" alt=""
+                 data-pfid="{{$value.pfid}}"
+            >
+            {{/if}}
+
+            {{if $value.live_id!=null}}
+            <div class="live"></div>
+            {{/if}}
+        </div>
+    </li>
+    <li>
+        <div class="nickname t_nowrap">{{$value.nickname}}</div>
+        <div class="starvalue">魔髮長度<em>{{$value.score}}</em></div>
+    </li>
+    <li>
+        <button class="btn-contribution"
+                type="2"
+                anchor_id="{{$value.pfid}}">
+            <span class="btn-title">貢獻榜</span>
+            <span class="top-user-groups">
+                    {{include 'top3Template' $value.top3}}
+                </span>
+        </button>
+    </li>
+</ul>
+{{/each}}
+
+
